@@ -6,7 +6,7 @@ Dealer Name: Spectrum Integrators
 System Name: Settings File Watcher
 System Number:
 Programmer: Jonathan Dean
-Comments:
+Comments: Monitors a file and pulses a signal when that file has been created or changed
 */
 
 /*******************************************************************************************
@@ -31,19 +31,25 @@ Comments:
 // #ENCODING_UTF16
 // #ENCODING_INHERIT_FROM_PARENT
 // #ENCODING_INHERIT_FROM_PROGRAM
-/*
+
+
 #HELP_BEGIN
-   (add additional lines of help lines)
+INPUTS
+None
+
+OUTPUTS
+File_Changed		DIGITAL		Pulsed when the watched file has been created or changed
+
+PARAMETERS
+Filename			STRING		The full path and filename of the file to watch
+Debug				INTEGER		Enables printing extra messages to the console
 #HELP_END
-*/
+
 
 /*******************************************************************************************
   Include Libraries
 *******************************************************************************************/
 #USER_SIMPLSHARP_LIBRARY "SettingsFileWatcher"
-
-// #CRESTRON_LIBRARY ""
-// #USER_LIBRARY ""
 
 /*******************************************************************************************
   DIGITAL, ANALOG and SERIAL INPUTS and OUTPUTS
@@ -62,7 +68,7 @@ INTEGER_PARAMETER Debug;
 #BEGIN_PARAMETER_PROPERTIES Filename
 	propValidUnits = unitString;
 	propDefaultUnit = unitString;
-	propDefaultValue = "\\USER\\Config.json";
+	propDefaultValue = "\\user\\Config.json";
 #END_PARAMETER_PROPERTIES
 
 #BEGIN_PARAMETER_PROPERTIES Debug
